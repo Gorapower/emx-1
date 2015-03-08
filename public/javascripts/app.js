@@ -32,7 +32,7 @@ userController = function(scope, window, users, estas) {
     return estas.getEsta(id).then(function(data) {
       console.log(data);
       scope.estac = data.data;
-      scope.estac.disponibilidad = 1;
+      scope.estac.disponibilidad = Math.floor((Math.random() * 4) + 1);
       return scope.cuadro = true;
     });
   };

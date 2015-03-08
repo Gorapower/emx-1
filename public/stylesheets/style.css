@@ -176,3 +176,15 @@ vertical-align
   height: 20px;
   width: 98%;
 }
+.d1 {
+  background: #4caf50;
+}
+.d2 {
+  background: #ffc107;
+}
+.d3 {
+  background: #f44336;
+}
+.d4 {
+  background: #000;
+}

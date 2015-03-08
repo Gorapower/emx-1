@@ -34,7 +34,7 @@ userController = (scope, window, users, estas) ->
 		.then (data) ->
 			console.log (data)
 			scope.estac = data.data
-			scope.estac.disponibilidad = 1 
+			scope.estac.disponibilidad = Math.floor (Math.random() * 4  )+ 1
 			scope.cuadro = true
 
 	scope.obtener_cercanos = () ->		
