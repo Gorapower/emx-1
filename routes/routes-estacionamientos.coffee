@@ -23,22 +23,29 @@ module.exports = (router) ->
 				.exec (err,info) ->
 						if err  
 							handleError(err)
-						data =
-							id_estacionamiento: record._id
-							precio: info.precio
-							rating: info.rating
-							disponibilidad: info.disponibilidad
-							coory: record.YCOORD
-							coorx: record.XCOORD
+							res.send(err)
+						if info == null
+							res.send('error')
+						else
+							data =
+								id_estacionamiento: record._id
+								precio: info.precio
+								rating: info.rating
+								disponibilidad: info.disponibilidad
+								coory: record.YCOORD
+								coorx: record.XCOORD
 
-						res.send(data)
+							res.send(data)
 						return
+
 			else
 				res.send(error)
+
 			return	
 	
 	.get '/api/cercanos', (req,res) ->
 		request url+'_sql?sql=SELECT%20*%20from%20"4366bf30-01eb-4fa0-9f2a-c74153ec2b79"',  (error,response,body) ->
+
 			if !error and response.statusCode == 200		
 				api_cd = JSON.parse(body)
 				cercanos = []
@@ -55,13 +62,13 @@ module.exports = (router) ->
 					if(distance < 500)
 						cercanos.push(record._id)
 						console.log(distance)
-
-
 				for num in [1..2127]
 					check_distance(num)
 
 				res.send(cercanos)
-	
+			else
+				res.send(err)
+
 	###
 	.get '/first_five',(req,res) ->
 		query = qs.stringify {

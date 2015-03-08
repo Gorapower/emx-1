@@ -29,16 +29,21 @@ module.exports = function(router) {
         }).exec(function(err, info) {
           if (err) {
             handleError(err);
+            res.send(err);
           }
-          data = {
-            id_estacionamiento: record._id,
-            precio: info.precio,
-            rating: info.rating,
-            disponibilidad: info.disponibilidad,
-            coory: record.YCOORD,
-            coorx: record.XCOORD
-          };
-          res.send(data);
+          if (info === null) {
+            res.send('error');
+          } else {
+            data = {
+              id_estacionamiento: record._id,
+              precio: info.precio,
+              rating: info.rating,
+              disponibilidad: info.disponibilidad,
+              coory: record.YCOORD,
+              coorx: record.XCOORD
+            };
+            res.send(data);
+          }
         });
       } else {
         res.send(error);
@@ -70,6 +75,8 @@ module.exports = function(router) {
           check_distance(num);
         }
         return res.send(cercanos);
+      } else {
+        return res.send(err);
       }
     });
   });
