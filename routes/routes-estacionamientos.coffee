@@ -49,8 +49,16 @@ module.exports = (router) ->
 				res.send(error)
 
 			return	
-	
-	.get '/api/cercanos', (req,res) ->
+
+
+	.post '/api/cercanos', (req,res) ->
+		console.log(req.body)
+		xcoor = req.body.xcoord
+		ycoor = req.body.ycoord
+
+		xcoor = parseFloat xcoor
+		ycoor = parseFloat ycoor
+		console.log(ycoor)
 		request url+'_sql?sql=SELECT%20*%20from%20"4366bf30-01eb-4fa0-9f2a-c74153ec2b79"',  (error,response,body) ->
 
 			if !error and response.statusCode == 200		
@@ -59,15 +67,15 @@ module.exports = (router) ->
 				check_distance = (i) ->
 					record = api_cd.result.records[i]
 					distance = gl.getDistance {
-						latitude: 19.440567
-						longitude: -99.181590
+						latitude: ycoor
+						longitude: xcoor
 						}, {
 							latitude: parseFloat record.YCOORD
 							longitude: parseFloat record.XCOORD
 						}
 					distance = parseInt distance
 					if(distance < 500)
-						cercanos.push(record._id)
+						cercanos.push(record)
 						console.log(distance)
 				for num in [1..2127]
 					check_distance(num)
@@ -113,3 +121,27 @@ module.exports = (router) ->
 				id += 1
 				res.redirect '/api/llenar/'+id
 	###
+	###.get '/api/cercanos', (req,res) ->
+				
+			xcoor = req.body.xcoor
+			ycoor = req.body.ycoor 
+			cercanos = []
+
+			check_distance = (i) ->
+				
+				distance = gl.getDistance {
+					latitude: 
+					longitude: -99.181590
+					}, {
+						latitude: parseFloat record.YCOORD
+						longitude: parseFloat record.XCOORD
+					}
+				distance = parseInt distance
+				if(distance < 500)
+					cercanos.push(record._id)
+					console.log(distance)
+
+			for num in [1..2127]
+				check_distance(num)
+
+			res.send(cercanos)###

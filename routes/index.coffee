@@ -1,8 +1,8 @@
 express = require('express')
 request = require('request')
 router = express.Router()
-estacionamientos = require('./routes-estacionamientos')(router)
-
+estacionamientos 	= require('./routes-estacionamientos')(router)
+usuario 					= require('./routes-users')(router)
 
 ### GET home page. ###
 

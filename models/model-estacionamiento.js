@@ -9,7 +9,8 @@ estacionamientoSchema = new Schema({
   id_estacionamiento: Number,
   precio: Number,
   rating: Number,
-  disponibilidad: String
+  disponibilidad: String,
+  comentarios: []
 
   /* 
   			rojo: 		#e53935

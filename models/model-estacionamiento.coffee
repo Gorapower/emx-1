@@ -6,6 +6,7 @@ estacionamientoSchema = new Schema
 		precio: Number
 		rating: Number
 		disponibilidad: String 
+		comentarios: []
 		### 
 			rojo: 		#e53935
 			amarillo: 	#ffee58

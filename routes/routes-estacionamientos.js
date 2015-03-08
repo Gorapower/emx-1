@@ -56,7 +56,14 @@ module.exports = function(router) {
         res.send(error);
       }
     });
-  }).get('/api/cercanos', function(req, res) {
+  }).post('/api/cercanos', function(req, res) {
+    var xcoor, ycoor;
+    console.log(req.body);
+    xcoor = req.body.xcoord;
+    ycoor = req.body.ycoord;
+    xcoor = parseFloat(xcoor);
+    ycoor = parseFloat(ycoor);
+    console.log(ycoor);
     return request(url + '_sql?sql=SELECT%20*%20from%20"4366bf30-01eb-4fa0-9f2a-c74153ec2b79"', function(error, response, body) {
       var api_cd, cercanos, check_distance, j, num;
       if (!error && response.statusCode === 200) {
@@ -66,15 +73,15 @@ module.exports = function(router) {
           var distance, record;
           record = api_cd.result.records[i];
           distance = gl.getDistance({
-            latitude: 19.440567,
-            longitude: -99.181590
+            latitude: ycoor,
+            longitude: xcoor
           }, {
             latitude: parseFloat(record.YCOORD),
             longitude: parseFloat(record.XCOORD)
           });
           distance = parseInt(distance);
           if (distance < 500) {
-            cercanos.push(record._id);
+            cercanos.push(record);
             return console.log(distance);
           }
         };
@@ -124,5 +131,31 @@ module.exports = function(router) {
   			nuevo.save (e)->
   				id += 1
   				res.redirect '/api/llenar/'+id
+   */
+
+  /*.get '/api/cercanos', (req,res) ->
+  				
+  			xcoor = req.body.xcoor
+  			ycoor = req.body.ycoor 
+  			cercanos = []
+  
+  			check_distance = (i) ->
+  				
+  				distance = gl.getDistance {
+  					latitude: 
+  					longitude: -99.181590
+  					}, {
+  						latitude: parseFloat record.YCOORD
+  						longitude: parseFloat record.XCOORD
+  					}
+  				distance = parseInt distance
+  				if(distance < 500)
+  					cercanos.push(record._id)
+  					console.log(distance)
+  
+  			for num in [1..2127]
+  				check_distance(num)
+  
+  			res.send(cercanos)
    */
 };

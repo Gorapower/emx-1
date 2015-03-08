@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .back(ng-controller="userCtrl")
+    .title
+      br
+      p EMX
+      button(ng-click="obtener_cercanos()", class="btncer")
+    .info 
+      h3 #{user}
+      #id
+        p Id: 
+        div(ng-bind="id")
+      #rankin 4
+      #disponibilidad( style="background: {{disponibilidad}}" ) dis
+      #comentarios
+
+
+    #map-canvas

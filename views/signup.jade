@@ -5,3 +5,17 @@ block content
     .index
       p Registrate
 
+    .registro
+      form(method="post", action="/api/user")
+        //label Username: 
+        input(type="text",name="username",placeholder="Username")
+        br
+        //label Correo: 
+        input(type="text",name="correo",placeholder="Correo")
+        br
+        //label Contraseña: 
+        input(type="text",name="password",placeholder="Contraseña")
+        br
+        input(type="submit", class="submit")
+
+
