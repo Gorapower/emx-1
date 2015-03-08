@@ -18,6 +18,10 @@ module.exports = function(router) {
   return router.get('/api/estacionamiento/:id', function(req, res) {
     var id_estacionamiento;
     id_estacionamiento = req.param('id');
+    id_estacionamiento = parseInt(id_estacionamiento);
+    if (id_estacionamiento > 22000) {
+      res.send('error');
+    }
     return request(url + '_sql?sql=SELECT%20*%20from%20"4366bf30-01eb-4fa0-9f2a-c74153ec2b79"%20WHERE%20_id=' + id_estacionamiento, function(error, response, body) {
       var api_cd, record;
       if (!error && response.statusCode === 200) {
