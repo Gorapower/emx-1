@@ -91,14 +91,14 @@ userController = (scope, window, users, estas) ->
 			      title: scope.cercanos.data[5]._id+'')
 
 			  google.maps.event.addListener scope.mark1,'click', () ->
-				  map.setZoom(12);
+				  #map.setZoom(12);
 				  map.setCenter(scope.mark1.getPosition());
 				  #alert(scope.mark1.getTitle())
 				  scope.setEs(scope.mark1.getTitle())
 				  return
 
 					google.maps.event.addListener scope.mark2,'click', () ->
-					  map.setZoom(12);
+					  #map.setZoom(12);
 					  map.setCenter(scope.mark2.getPosition());
 					  #alert(scope.mark2.getTitle())
 				  	scope.setEs(scope.mark2.getTitle())
@@ -106,21 +106,21 @@ userController = (scope, window, users, estas) ->
 					  return
 
 					google.maps.event.addListener scope.mark3,'click', () ->
-					  map.setZoom(12);
+					  #map.setZoom(12);
 					  map.setCenter(scope.mark3.getPosition());
 					  #alert(scope.mark3.getTitle())
 				  	scope.setEs(scope.mark3.getTitle())
 					  return
 
 					google.maps.event.addListener scope.mark4,'click', () ->
-					  map.setZoom(12);
+					  #map.setZoom(12);
 					  map.setCenter(scope.mark4.getPosition());
 					  #alert(scope.mark4.getTitle())
 				  	scope.setEs(scope.mark4.getTitle())
 					  return
 
 				  google.maps.event.addListener scope.mark5,'click', () ->
-					  map.setZoom(12);
+					  #map.setZoom(12);
 					  map.setCenter(scope.mark5.getPosition());
 					  #alert(scope.mark5.getTitle())
 				  	scope.setEs(scope.mark5.getTitle())

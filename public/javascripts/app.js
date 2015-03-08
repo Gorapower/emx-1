@@ -87,27 +87,22 @@ userController = function(scope, window, users, estas) {
         title: scope.cercanos.data[5]._id + ''
       });
       google.maps.event.addListener(scope.mark1, 'click', function() {
-        map.setZoom(12);
         map.setCenter(scope.mark1.getPosition());
         scope.setEs(scope.mark1.getTitle());
       });
       google.maps.event.addListener(scope.mark2, 'click', function() {
-        map.setZoom(12);
         map.setCenter(scope.mark2.getPosition());
         scope.setEs(scope.mark2.getTitle());
       });
       google.maps.event.addListener(scope.mark3, 'click', function() {
-        map.setZoom(12);
         map.setCenter(scope.mark3.getPosition());
         scope.setEs(scope.mark3.getTitle());
       });
       google.maps.event.addListener(scope.mark4, 'click', function() {
-        map.setZoom(12);
         map.setCenter(scope.mark4.getPosition());
         scope.setEs(scope.mark4.getTitle());
       });
       google.maps.event.addListener(scope.mark5, 'click', function() {
-        map.setZoom(12);
         map.setCenter(scope.mark5.getPosition());
         scope.setEs(scope.mark5.getTitle());
       });
