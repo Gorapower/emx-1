@@ -1,15 +1,10 @@
 extends layout
 
 block content
-  .index
-    h1= title
+  .index    
     p Bienvenido a EMX
     
-
-      
-    div(id="map-canvas")
-
   .options(ng-controller="homeCtrl")
-    button(ng-click="login()") Registrate
+    button(ng-click="login()") Inicia Sesion
     br
-    button(ng-click="signup()") Inicia sesion
+    button(ng-click="signup()") Registrate

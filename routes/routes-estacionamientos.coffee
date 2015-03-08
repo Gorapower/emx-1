@@ -33,6 +33,7 @@ module.exports = (router) ->
 			if !error and response.statusCode == 200
 				api_cd = JSON.parse(body)
 				record = api_cd.result.records[0]
+				console.log(record)
 				estacionamientos
 				.findOne {id_estacionamiento: record._id}
 				.exec (err,info) ->

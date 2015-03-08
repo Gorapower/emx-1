@@ -15,7 +15,9 @@ estacionamientos = require('./routes-estacionamientos')(router);
 router.get('/', function(req, res, next) {
   res.render('index');
 }).get('/login', function(req, res) {
-  return res.render('login');
+  res.render('login');
+}).get('/signup', function(req, res) {
+  return res.render('signup');
 }).get('/go', function(req, res) {
   return request('http://datos.labcd.mx/api/action/datastore_search?resource_id=4366bf30-01eb-4fa0-9f2a-c74153ec2b79&limit=5', function(error, response, body) {
     if (!error && response.statusCode === 200) {
