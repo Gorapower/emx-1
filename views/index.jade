@@ -1,10 +1,11 @@
 extends layout
 
 block content
-  .index    
-    p Bienvenido a EMX
-    
-  .options(ng-controller="homeCtrl")
-    button(ng-click="login()") Inicia Sesion
-    br
-    button(ng-click="signup()") Registrate
+  .fondo
+    .index    
+      p Bienvenido a EMX
+
+    .options(ng-controller="homeCtrl")
+      button(ng-click="login()") Inicia Sesion
+      br
+      button(ng-click="signup()") Registrate
