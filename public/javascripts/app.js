@@ -26,32 +26,90 @@ userController = function(scope, window, users, estas) {
   window.navigator.geolocation.getCurrentPosition(function(position) {
     return scope.ubicacion.coorx = position.coords.longitude;
   });
+  scope.estac = {};
+  scope.cuadro = false;
+  scope.setEs = function(id) {
+    return estas.getEsta(id).then(function(data) {
+      console.log(data);
+      scope.estac = data;
+      return scope.cuadro = true;
+    });
+  };
   return scope.obtener_cercanos = function() {
     var g;
     g = 0;
     scope.initialize = function() {
-      return setTimeout()(function() {
-        var i, map, mapOptions, mark;
-        mapOptions = {
-          zoom: 15,
-          center: new google.maps.LatLng(19.351416, -99.181786)
-        };
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-        mark = new google.maps.Marker({
-          position: new google.maps.LatLng(19.351416, -99.181786),
-          map: map,
-          title: 'Aqui estas!'
-        });
-        i = 0;
-        while (i < g) {
-          mark = new google.maps.Marker({
-            position: new google.maps.LatLng(parseFloat(scope.cercanos.data[i].YCOORD, parseFloat(scope.cercanos.data[i].XCOORD))),
-            map: map,
-            title: 'Aqui estas!'
-          });
-          i++;
-        }
-      }, 2000);
+      var map, mapOptions, mark, x1, x2, x3, x4, x5, y1, y2, y3, y4, y5;
+      mapOptions = {
+        zoom: 12,
+        center: new google.maps.LatLng(19.4325504, -99.13379309999999)
+      };
+      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      mark = new google.maps.Marker({
+        position: new google.maps.LatLng(19.4325504, -99.13379309999999),
+        map: map,
+        title: 'Aqui estas!'
+      });
+      x1 = parseFloat(scope.cercanos.data[1].XCOORD);
+      y1 = parseFloat(scope.cercanos.data[1].YCOORD);
+      scope.mark1 = new google.maps.Marker({
+        position: new google.maps.LatLng(y1, x1),
+        map: map,
+        title: scope.cercanos.data[1]._id + ''
+      });
+      x2 = parseFloat(scope.cercanos.data[2].XCOORD);
+      y2 = parseFloat(scope.cercanos.data[2].YCOORD);
+      scope.mark2 = new google.maps.Marker({
+        position: new google.maps.LatLng(y2, x2),
+        map: map,
+        title: scope.cercanos.data[2]._id + ''
+      });
+      x3 = parseFloat(scope.cercanos.data[3].XCOORD);
+      y3 = parseFloat(scope.cercanos.data[3].YCOORD);
+      scope.mark3 = new google.maps.Marker({
+        position: new google.maps.LatLng(y3, x3),
+        map: map,
+        title: scope.cercanos.data[3]._id + ''
+      });
+      x4 = parseFloat(scope.cercanos.data[4].XCOORD);
+      y4 = parseFloat(scope.cercanos.data[4].YCOORD);
+      scope.mark4 = new google.maps.Marker({
+        position: new google.maps.LatLng(y4, x4),
+        map: map,
+        title: scope.cercanos.data[4]._id + ''
+      });
+      x5 = parseFloat(scope.cercanos.data[5].XCOORD);
+      y5 = parseFloat(scope.cercanos.data[5].YCOORD);
+      scope.mark5 = new google.maps.Marker({
+        position: new google.maps.LatLng(y5, x5),
+        map: map,
+        title: scope.cercanos.data[5]._id + ''
+      });
+      google.maps.event.addListener(scope.mark1, 'click', function() {
+        map.setZoom(12);
+        map.setCenter(scope.mark1.getPosition());
+        scope.setEs(scope.mark1.getTitle());
+      });
+      google.maps.event.addListener(scope.mark2, 'click', function() {
+        map.setZoom(12);
+        map.setCenter(scope.mark2.getPosition());
+        scope.setEs(scope.mark2.getTitle());
+      });
+      google.maps.event.addListener(scope.mark3, 'click', function() {
+        map.setZoom(12);
+        map.setCenter(scope.mark3.getPosition());
+        scope.setEs(scope.mark3.getTitle());
+      });
+      google.maps.event.addListener(scope.mark4, 'click', function() {
+        map.setZoom(12);
+        map.setCenter(scope.mark4.getPosition());
+        scope.setEs(scope.mark4.getTitle());
+      });
+      google.maps.event.addListener(scope.mark5, 'click', function() {
+        map.setZoom(12);
+        map.setCenter(scope.mark5.getPosition());
+        scope.setEs(scope.mark5.getTitle());
+      });
     };
     return estas.getCerca(scope.ubicacion.coorx, scope.ubicacion.coory).then(function(data) {
       scope.cercanos = data;

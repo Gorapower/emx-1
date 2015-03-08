@@ -6,7 +6,7 @@ block content
       p Registrate
 
     .registro
-      form(method="post", action="/api/user")
+      form(method="post", action="/user")
         //label Username: 
         input(type="text",name="username",placeholder="Username")
         br
@@ -14,8 +14,11 @@ block content
         input(type="text",name="correo",placeholder="Correo")
         br
         //label Contraseña: 
-        input(type="text",name="password",placeholder="Contraseña")
+        input(type="password",name="password",placeholder="Contraseña")
         br
         input(type="submit", class="submit")
+      br
+      br
+      a(href="/login",class="lin") Inicia Sesion
 
 

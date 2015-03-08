@@ -11,12 +11,9 @@ module.exports = function(router) {
       user: user
     });
   }).get('/api/user', function(req, res) {
-    return users.find({}).exec(function(err, data) {
-      if (err) {
-        res.send(err);
-      }
-      return res.send(data);
-    });
+    var user;
+    user = req.body.username;
+    return res.redirect('/user/' + user);
   }).get('/api/user/:username', function(req, res) {
     return users.findOne({
       username: req.param('username')

@@ -8,12 +8,8 @@ module.exports = (router) ->
 		res.render('home',{user:user})
 
 	.get '/api/user', (req,res) ->
-		users
-		.find {}
-		.exec (err, data) ->
-			if err
-				res.send err
-			res.send data
+		user = req.body.username 
+		res.redirect('/user/'+user);
 
 	.get '/api/user/:username', (req,res) ->
 		users

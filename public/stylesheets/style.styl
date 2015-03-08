@@ -24,6 +24,7 @@ body
 p
 	margin 0
 	padding 0
+	color white
 
 h1
 	margin 0
@@ -73,8 +74,8 @@ h3
 	background rgba(light_primary_color,0.9)
 	width 60%
 	margin-left 15%
-	margin-top 30%
-	height 200px
+	margin-top 25%
+	height 250px
 	box-shadow level2
 	padding 15px
 	text-align center
@@ -116,7 +117,10 @@ h3
 	text-align center
 	color white
 		p
-			
+			color white
+			width 20%
+			display inline-block
+			vertical-align 
 	
 #map-canvas
 	vertical-align top	
@@ -137,8 +141,7 @@ h3
 		margin-top 10px
 	h3
 		margin-top 10%
-	#id
-		
+	.id		
 		font-weight lighter
 		p
 			display inline-block
@@ -152,8 +155,19 @@ h3
 	width 40px
 	height 40px
 	border 0px
-	background accent_color	
-	
-	
-	
+	background light_primary_color
+	&:before
+		color white
+		font-family icomoon
+		content '\e601'
+.lin
+	text-decoration none
+	margin-top 20px
+	color white
+.esta
+	color black
+	box-shadow level2
+	height 70%
+	background white
+	margin 0 5px
 	

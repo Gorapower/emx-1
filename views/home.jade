@@ -8,11 +8,12 @@ block content
       button(ng-click="obtener_cercanos()", class="btncer")
     .info 
       h3 #{user}
-      #id
-        p Id: 
-        div(ng-bind="id")
-      #rankin 4
-      #disponibilidad( style="background: {{disponibilidad}}" ) dis
+      
+      .esta(ng-show="cuadro")
+        div ID:
+        div(ng-bind="estac")
+
+
       #comentarios
 
 

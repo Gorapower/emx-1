@@ -4,3 +4,17 @@ block content
   .fondo
     .index
       p Inicia Sesion
+    
+    .registro
+      form(method="post", action="/api/user")
+        
+        input(type="text",name="username",placeholder="Username")
+        br
+         
+        input(type="password",name="password",placeholder="Contraseña")
+        br
+        input(type="submit", class="submit")
+      br
+      br
+      a(href="/signup",class="lin") Registrate
+
