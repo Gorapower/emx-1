@@ -8,25 +8,9 @@ module.exports = (router) ->
 	data =
 		resource_id : '4366bf30-01eb-4fa0-9f2a-c74153ec2b79'
 
+
+
 	router
-
-	.get '/first_five',(req,res) ->
-		query = qs.stringify {
-			resource_id: '4366bf30-01eb-4fa0-9f2a-c74153ec2b79'
-			limit: 5
-		}		
-		
-		
-		request url+'?'+query, (error,response,body) ->
-			if !error and response.statusCode == 200
-				data = JSON.parse(body)
-				res.render('index',{data: data.result.records[0]})
-			else
-				res.send(error)
-			return
-
-		return
-	
 	.get '/api/estacionamiento/:id' , (req,res)->
 		id_estacionamiento = req.param('id')
 		request url+'_sql?sql=SELECT%20*%20from%20"4366bf30-01eb-4fa0-9f2a-c74153ec2b79"%20WHERE%20_id='+id_estacionamiento,  (error,response,body) ->
@@ -51,24 +35,8 @@ module.exports = (router) ->
 						return
 			else
 				res.send(error)
-			return			
-	.get '/api/llenar/:id', (req,res) ->
-		
-		id = req.param('id')
-		id = parseInt(id)
-		if id > 2128
-			res.send('terminado')
-		else
-			nuevo = new estacionamientos {
-				id_estacionamiento: id
-				precio: Math.floor (Math.random() * 50) + 1 
-				rating: Math.floor (Math.random() * 5) + 1
-				disponibilidad: '#e53935' 
-			}
-			nuevo.save (e)->
-				id += 1
-				res.redirect '/api/llenar/'+id
-
+			return	
+	
 	.get '/api/cercanos', (req,res) ->
 		request url+'_sql?sql=SELECT%20*%20from%20"4366bf30-01eb-4fa0-9f2a-c74153ec2b79"',  (error,response,body) ->
 			if !error and response.statusCode == 200		
@@ -93,3 +61,41 @@ module.exports = (router) ->
 					check_distance(num)
 
 				res.send(cercanos)
+	
+	###
+	.get '/first_five',(req,res) ->
+		query = qs.stringify {
+			resource_id: '4366bf30-01eb-4fa0-9f2a-c74153ec2b79'
+			limit: 5
+		}		
+		
+		
+		request url+'?'+query, (error,response,body) ->
+			if !error and response.statusCode == 200
+				data = JSON.parse(body)
+				res.render('index',{data: data.result.records[0]})
+			else
+				res.send(error)
+			return
+
+		return
+	###
+
+	###		
+	.get '/api/llenar/:id', (req,res) ->
+		
+		id = req.param('id')
+		id = parseInt(id)
+		if id > 2128
+			res.send('terminado')
+		else
+			nuevo = new estacionamientos {
+				id_estacionamiento: id
+				precio: Math.floor (Math.random() * 50) + 1 
+				rating: Math.floor (Math.random() * 5) + 1
+				disponibilidad: '#e53935' 
+			}
+			nuevo.save (e)->
+				id += 1
+				res.redirect '/api/llenar/'+id
+	###

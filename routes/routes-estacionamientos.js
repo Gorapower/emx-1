@@ -15,23 +15,7 @@ module.exports = function(router) {
   data = {
     resource_id: '4366bf30-01eb-4fa0-9f2a-c74153ec2b79'
   };
-  return router.get('/first_five', function(req, res) {
-    var query;
-    query = qs.stringify({
-      resource_id: '4366bf30-01eb-4fa0-9f2a-c74153ec2b79',
-      limit: 5
-    });
-    request(url + '?' + query, function(error, response, body) {
-      if (!error && response.statusCode === 200) {
-        data = JSON.parse(body);
-        res.render('index', {
-          data: data.result.records[0]
-        });
-      } else {
-        res.send(error);
-      }
-    });
-  }).get('/api/estacionamiento/:id', function(req, res) {
+  return router.get('/api/estacionamiento/:id', function(req, res) {
     var id_estacionamiento;
     id_estacionamiento = req.param('id');
     return request(url + '_sql?sql=SELECT%20*%20from%20"4366bf30-01eb-4fa0-9f2a-c74153ec2b79"%20WHERE%20_id=' + id_estacionamiento, function(error, response, body) {
@@ -60,24 +44,6 @@ module.exports = function(router) {
         res.send(error);
       }
     });
-  }).get('/api/llenar/:id', function(req, res) {
-    var id, nuevo;
-    id = req.param('id');
-    id = parseInt(id);
-    if (id > 2128) {
-      return res.send('terminado');
-    } else {
-      nuevo = new estacionamientos({
-        id_estacionamiento: id,
-        precio: Math.floor((Math.random() * 50) + 1),
-        rating: Math.floor((Math.random() * 5) + 1),
-        disponibilidad: '#e53935'
-      });
-      return nuevo.save(function(e) {
-        id += 1;
-        return res.redirect('/api/llenar/' + id);
-      });
-    }
   }).get('/api/cercanos', function(req, res) {
     return request(url + '_sql?sql=SELECT%20*%20from%20"4366bf30-01eb-4fa0-9f2a-c74153ec2b79"', function(error, response, body) {
       var api_cd, cercanos, check_distance, j, num;
@@ -107,4 +73,42 @@ module.exports = function(router) {
       }
     });
   });
+
+  /*
+  	.get '/first_five',(req,res) ->
+  		query = qs.stringify {
+  			resource_id: '4366bf30-01eb-4fa0-9f2a-c74153ec2b79'
+  			limit: 5
+  		}		
+  		
+  		
+  		request url+'?'+query, (error,response,body) ->
+  			if !error and response.statusCode == 200
+  				data = JSON.parse(body)
+  				res.render('index',{data: data.result.records[0]})
+  			else
+  				res.send(error)
+  			return
+  
+  		return
+   */
+
+  /*		
+  	.get '/api/llenar/:id', (req,res) ->
+  		
+  		id = req.param('id')
+  		id = parseInt(id)
+  		if id > 2128
+  			res.send('terminado')
+  		else
+  			nuevo = new estacionamientos {
+  				id_estacionamiento: id
+  				precio: Math.floor (Math.random() * 50) + 1 
+  				rating: Math.floor (Math.random() * 5) + 1
+  				disponibilidad: '#e53935' 
+  			}
+  			nuevo.save (e)->
+  				id += 1
+  				res.redirect '/api/llenar/'+id
+   */
 };
