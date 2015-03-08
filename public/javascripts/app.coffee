@@ -26,11 +26,41 @@ userController = (scope, window, users, estas) ->
 		scope.ubicacion.coorx = position.coords.longitude 	
 
 	scope.obtener_cercanos = () ->		
+		g = 0
+
+		scope.initialize = () ->
+		  setTimeout() ->
+		  	mapOptions = 
+			    zoom: 15
+			    center: new (google.maps.LatLng)(19.351416, -99.181786)
+
+			  map = new (google.maps.Map)(document.getElementById('map-canvas'), mapOptions)
+
+			  mark = new (google.maps.Marker)(
+			      position: new google.maps.LatLng 19.351416,-99.181786
+			      map: map
+			      title: 'Aqui estas!')
+
+			  i = 0
+			  while i < g
+
+			    mark = new (google.maps.Marker)(
+			      position: new google.maps.LatLng parseFloat scope.cercanos.data[i].YCOORD, parseFloat scope.cercanos.data[i].XCOORD
+			      map: map
+			      title: 'Aqui estas!')
+			   
+			    i++
+			  return
+
+		  , 2000;
+		  
 		estas
 		.getCerca(scope.ubicacion.coorx,scope.ubicacion.coory)
 		.then (data) ->
 			scope.cercanos = data
-			console.log(scope.cercanos)
+			console.log(scope.cercanos.data.length)			
+			g = parseInt scope.cercanos.data.length
+			google.maps.event.addDomListener window, 'load', scope.initialize()
 
 
 getUser = (http) ->

@@ -27,9 +27,37 @@ userController = function(scope, window, users, estas) {
     return scope.ubicacion.coorx = position.coords.longitude;
   });
   return scope.obtener_cercanos = function() {
+    var g;
+    g = 0;
+    scope.initialize = function() {
+      return setTimeout()(function() {
+        var i, map, mapOptions, mark;
+        mapOptions = {
+          zoom: 15,
+          center: new google.maps.LatLng(19.351416, -99.181786)
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        mark = new google.maps.Marker({
+          position: new google.maps.LatLng(19.351416, -99.181786),
+          map: map,
+          title: 'Aqui estas!'
+        });
+        i = 0;
+        while (i < g) {
+          mark = new google.maps.Marker({
+            position: new google.maps.LatLng(parseFloat(scope.cercanos.data[i].YCOORD, parseFloat(scope.cercanos.data[i].XCOORD))),
+            map: map,
+            title: 'Aqui estas!'
+          });
+          i++;
+        }
+      }, 2000);
+    };
     return estas.getCerca(scope.ubicacion.coorx, scope.ubicacion.coory).then(function(data) {
       scope.cercanos = data;
-      return console.log(scope.cercanos);
+      console.log(scope.cercanos.data.length);
+      g = parseInt(scope.cercanos.data.length);
+      return google.maps.event.addDomListener(window, 'load', scope.initialize());
     });
   };
 };
