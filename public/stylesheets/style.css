@@ -166,7 +166,13 @@ vertical-align
 .esta {
   color: #000;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-  height: 70%;
+  height: 80%;
   background: #fff;
   margin: 0 5px;
+}
+.dis {
+  background: #f00;
+  display: inline-block;
+  height: 20px;
+  width: 98%;
 }

@@ -31,7 +31,8 @@ userController = function(scope, window, users, estas) {
   scope.setEs = function(id) {
     return estas.getEsta(id).then(function(data) {
       console.log(data);
-      scope.estac = data;
+      scope.estac = data.data;
+      scope.estac.disponibilidad = 1;
       return scope.cuadro = true;
     });
   };
@@ -41,7 +42,7 @@ userController = function(scope, window, users, estas) {
     scope.initialize = function() {
       var map, mapOptions, mark, x1, x2, x3, x4, x5, y1, y2, y3, y4, y5;
       mapOptions = {
-        zoom: 12,
+        zoom: 13,
         center: new google.maps.LatLng(19.4325504, -99.13379309999999)
       };
       map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);

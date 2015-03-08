@@ -33,7 +33,8 @@ userController = (scope, window, users, estas) ->
 		.getEsta(id)
 		.then (data) ->
 			console.log (data)
-			scope.estac = data 
+			scope.estac = data.data
+			scope.estac.disponibilidad = 1 
 			scope.cuadro = true
 
 	scope.obtener_cercanos = () ->		
@@ -42,7 +43,7 @@ userController = (scope, window, users, estas) ->
 		scope.initialize = () ->
 		  
 		  	mapOptions = 
-			    zoom: 12
+			    zoom: 13
 			    center: new (google.maps.LatLng)(19.4325504,-99.13379309999999)
 
 			  map = new (google.maps.Map)(document.getElementById('map-canvas'), mapOptions)

@@ -93,6 +93,24 @@ module.exports = function(router) {
         return res.send(err);
       }
     });
+  }).get('/api/llenar/:id', function(req, res) {
+    var id, nuevo;
+    id = req.param('id');
+    id = parseInt(id);
+    if (id > 2128) {
+      return res.send('terminado');
+    } else {
+      nuevo = new estacionamientos({
+        id_estacionamiento: id,
+        precio: Math.floor((Math.random() * 50) + 1),
+        rating: Math.floor((Math.random() * 5) + 1),
+        disponibilidad: '#e53935'
+      });
+      return nuevo.save(function(e) {
+        id += 1;
+        return res.redirect('/api/llenar/' + id);
+      });
+    }
   });
 
   /*

@@ -83,6 +83,22 @@ module.exports = (router) ->
 				res.send(cercanos)
 			else
 				res.send(err)
+	.get '/api/llenar/:id', (req,res) ->
+		
+		id = req.param('id')
+		id = parseInt(id)
+		if id > 2128
+			res.send('terminado')
+		else
+			nuevo = new estacionamientos {
+				id_estacionamiento: id
+				precio: Math.floor (Math.random() * 50) + 1 
+				rating: Math.floor (Math.random() * 5) + 1
+				disponibilidad: '#e53935' 
+			}
+			nuevo.save (e)->
+				id += 1
+				res.redirect '/api/llenar/'+id
 
 	###
 	.get '/first_five',(req,res) ->

@@ -10,10 +10,18 @@ block content
       h3 #{user}
       
       .esta(ng-show="cuadro")
-        div ID:
-        div(ng-bind="estac")
-
-
+        br
+        div Id:
+        div(ng-bind="estac.id_estacionamiento")
+        br
+        div Precio:
+        div(ng-bind="estac.precio")
+        br
+        div Rating:
+        div(ng-bind="estac.rating")
+        br
+        div Cupo:
+        div(class="dis", style ="background: #000")
       #comentarios
 
 
