@@ -12,7 +12,11 @@ module.exports = (router) ->
 
 	router
 	.get '/api/estacionamiento/:id' , (req,res)->
-		id_estacionamiento = req.param('id')
+
+		id_estacionamiento = req.param('id')+""
+		if id_estacionamiento.length > 4
+			res.send('error')
+
 		id_estacionamiento = parseInt(id_estacionamiento)
 		if id_estacionamiento > 22000
 			res.send('error')
